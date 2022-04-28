@@ -2,7 +2,9 @@ package com.kevinja.storefront.services.controllers;
 
 import com.kevinja.storefront.services.objects.*;
 import com.kevinja.storefront.services.repositories.StorefrontRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,5 +33,11 @@ public class StorefrontController {
     @GetMapping("/")
     public List<Storefront> getStorefronts() {
         return repository.getStorefronts();
+    }
+
+    @PostMapping("/")
+    @PreAuthorize("hasRole('vendor')")
+    public Storefront createStoreFront() {
+        throw new RuntimeException("Not yet implemented.");
     }
 }
